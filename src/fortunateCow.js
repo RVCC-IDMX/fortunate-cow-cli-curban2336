@@ -30,14 +30,17 @@ function loadFortunes() {
  * @returns {Array<Object>} The filtered array of fortune objects.
  */
 function filterFortunes(fortunes, category) {
+  let needsChange = true;
   // TODO: BEGIN STUDENT ASSIGNMENT
-  // TODO: If there is no category, return the original array
-  true; // replace this with your code here
+  if (category.toLowerCase() != 'tech' && category.toLowerCase() != 'general' && category.toLowerCase() != 'motivational' && category.toLowerCase() != 'inspirational') {
+    needsChange = false;
+  }
   // TODO: END STUDENT ASSIGNMENT
 
   // TODO: BEGIN STUDENT ASSIGNMENT
-  // TODO: Create an array of fortunes matching category
-  true; // replace this with your code here
+  if (needsChange) {
+    fortunes = fortunes.filter((item) => item.category === category);
+  }
   // TODO: END STUDENT ASSIGNMENT
   return fortunes;
 }
@@ -50,8 +53,8 @@ function filterFortunes(fortunes, category) {
  */
 function getRandomFortune(fortunes) {
   // TODO: BEGIN STUDENT ASSIGNMENT
-  // TODO: msg must be changed to be a random fortune
-  const msg = `Get a random fortune from the ${fortunes.length} fortunes`;  // replace this with your code here
+  const randomNum = Math.floor((Math.random() * fortunes.length));
+  const msg = fortunes[randomNum]["text"];
   // TODO: END STUDENT ASSIGNMENT
   return msg;
 }
@@ -84,8 +87,14 @@ export function fortunateCow(category) {
   const fortune = getRandomFortune(fortunes);
 
   // TODO: BEGIN STUDENT ASSIGNMENT
-  // TODO: Replace msg by calling the say function
-  const fortuneMessage = `${fortune} and then a cow using its say() function`;  // replace this with your code here
+  const fortuneMessage = say({
+    text: fortune,
+    e: "oO",
+    T: "U ",
+    r: false,
+    mode: "b"
+  });
+  //`${fortune} and then a cow using its say() function`;  // replace this with your code here
   // TODO: END STUDENT ASSIGNMENT
   return fortuneMessage;
 
